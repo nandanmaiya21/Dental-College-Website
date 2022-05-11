@@ -1,0 +1,38 @@
+{% extends "layout.html"%}
+
+
+{% block title%}
+Upload Image
+{% endblock %}
+
+{%block main%}
+<div class="container-fluid p-4 bg-light w-75 ">
+    <form action="/upload" method="POST" enctype="multipart/form-data">
+    <table id="tb" class="table table-striped table-bordered table-responsive-md table-hover " style="border-radius: 5px; background-color:#e3e3e3;">
+        <tr>
+            <td>
+    
+        <h5 style="text-align: left; font-family:Oswald;padding-left: 2%;">Your recent photo:</h5>
+            <div style="width: 60%;margin: auto;display: flex; padding-left: 10%;" class="form-row">
+                
+                <input style="margin-left: auto;margin-right: auto;" id="image" name="image"  type="file" required><br><br>
+                <input type="hidden" value="{{fname}}" name="fname">
+                <input type="hidden" value="{{lname}}" name="lname">
+            
+            </div>
+            
+    
+    </td>
+    </tr>
+    <tr>
+        <td>
+            <div>
+                <button id ="check" type="submit" class="btn btn-primary" >Submit Photo</button>
+            </div>
+        </td>
+    </tr>
+    </table>
+    </form>
+</div>
+
+{%endblock%}

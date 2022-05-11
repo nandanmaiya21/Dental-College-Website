@@ -1,0 +1,22 @@
+{% extends "layout.html"%}
+
+
+{% block title%}
+Login
+{% endblock %}
+
+{%block main%}
+<form action="/login" method="post">
+    <div class="d-flex flex-column">
+    <div class="p-2">
+        <input  autocomplete="off" autofocus class="form-control" name="username" placeholder="Username" type="text">
+    </div>
+    <div class="p-2">
+        <input  class="form-control" name="password" placeholder="Password" type="password">
+    </div>
+    <div class="p-2">
+        <button id ="check" class="btn btn-outline-primary" type="submit">Log In</button>
+    </div>
+</div>
+</form>
+{%endblock%}

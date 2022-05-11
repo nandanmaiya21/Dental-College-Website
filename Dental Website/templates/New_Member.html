@@ -1,0 +1,236 @@
+{% extends "layout.html"%}
+
+
+{% block title%}
+New_Member
+{% endblock %}
+
+{%block main%}
+<div class="container-fluid p-4 bg-light w-75 ">
+
+    <table id="tb" class="table  table-bordered table-responsive-md table-hover table-light" style="border-radius: 5px; background-color:#e1eeeed6;">
+        <form class="form-inline my-2 " action ="/New_Member" method="post" enctype="multipart/form-data">
+    <tr>
+        <h2 id="formH2"style="text-align: left; font-weight:bold;font-family:Oswald;padding-left:2%">Club Membership Registration</h2>
+        <h6 style="text-align: left; font-family:Oswald;padding-top:1%;padding-left: 2%;padding-bottom: 1%;">Complete the form below to sign up for our membership service.</h6>
+    </tr>
+    <tr>
+        <td>
+            <h5 style="text-align: left; font-family:Oswald;padding-left: 2%;">Name:</h5>
+            <div class="form-row">
+                <div class="col">
+    
+                  <input id = "fname" name="fname" type="text" style="padding-left: 10%;padding-right: 10%; text-align: center;" class="form-control"  style="font-family: Roboto Condensed;" required><br>
+                  <label for="fname" style="font-size: small;padding-left: 25%;padding-right: 25%;text-align: left;">First Name</label><br>
+                </div>
+                <div class="col">
+                  <input id = "lname" name="lname" type="text" style="padding-left: 10%;padding-right: 10%; text-align: center;" class="form-control"  style="font-family: Roboto Condensed;" required><br>
+                  <label for="lname" style="font-size: small;padding-left: 25%;padding-right: 25%;text-align: left;">Last Name</label><br>
+                </div>
+              </div>
+            
+           
+        
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <h5 style="text-align: left; font-family:Oswald;padding-left: 2%;">E-mail:</h5>
+            <div style="padding-left: 11.5%;float:left" class="form-group">
+            <input id="email" name="email" type="email" style="padding-left: 30%;padding-right: 30%; text-align: center;" class="form-control"  aria-describedby="emailHelp" placeholder="ex: myname@gmail.com" requried>
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <h5 style="text-align: left; font-family:Oswald;padding-left: 2%;">Phone Number:</h5>
+            <div style="padding-left: 11.5%;float:left" class="form-group">
+                <input id="phone" name="phone" type="number" style="padding-left: 30%;padding-right: 30%; text-align: center;" class="form-control"  placeholder="ex: 123-456-7890" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" maxLength="10" requried>
+                </div>
+        </td>
+    </tr>
+    <tr>
+       <td>
+        <h5 style="text-align: left; font-family:Oswald;padding-left: 2%;" >Address:</h5>
+        <div style="padding-left: 11.5%;" class="form-group">
+            <input style="float: left;width:55%" id="address" name="address" class ="form-control "  required><br><br>
+            <label for="address" style="font-size: small;float:left;">Street Address</label><br>
+
+
+        </div>
+        <div style="padding-left: 11.5%;" class="form-row">
+            <div class="col-7">
+            <input style="float: left;" id="city" name="city" class ="form-control " type="text" required><br><br>
+            <label for="city" style="font-size: small;float:left;">City</label>
+            </div>
+            <div class="col">
+                <select class="form-control" style="float: left;width:50%;" name="state" required>
+                    <option disabled selected value="" required></option>
+                    {% for s in states %}
+                    <option  value="{{s.title()}}" required>{{s.title()}}</option>
+                    {%endfor%}
+                </select><br><br>
+            <label for="state" style="font-size: small;float:left;">State/Province</label>
+            </div>
+            
+        </div>
+
+        <div style="padding-left: 11.5%;" class="form-row">
+            <div class="col-7">
+            <input style="float: left;" id="pin" name="pin" class ="form-control " type="number" required oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" maxLength="6"><br><br>
+            <label for="pin" style="font-size: small;float:left;">Postal / Zip Code</label>
+            </div>
+            <div class="col">
+                <select class="form-control" style="float: left;width:50%;" name="country" required>
+                    
+                    <option  selected value="India" required>India</option>
+                    <!--
+                    {% for value in country %}    
+                        
+                    <option  value="{{month}}" required>{{value}}</option>
+                    {%endfor%} -->
+                    
+                </select><br><br>
+            <label for="country" style="font-size: small;float:left;">Country</label>
+            </div>
+            
+        </div>
+
+       </td>
+    </tr>
+    <tr>
+        <td>
+         <h5 style="text-align: left; font-family:Oswald;padding-left: 2%;">Birth Date:</h5>
+         <div style="padding-left: 11.5%;" class="form-row">
+            <div class="col-4">
+
+                <select class="form-control" style="float: left;width:50%;" name="mm" required>
+                    <option disabled selected value="" required></option>
+                    {% for month in months%}
+                    <option  value="{{month}}" required>{{month.title()}}</option>
+                    {%endfor%}
+                </select><br><br>
+                <label for="mm" style="font-size: small;float:left;">Month</label>
+            </div>
+
+            <div class="col-4">
+                <select class="form-control" style="float: left;width:50%;" name="dd" required>
+                    <option disabled selected value="" required></option>
+                    {%for i in range(1,32,1)%}
+                    <option  value="{{i}}" requried>{{i}}</option>
+                    {%endfor%}
+                </select><br><br>
+                <label for="dd" style="font-size: small;float:left;">Day</label>
+            </div>
+            <div class="col-4">
+                <select class="form-control" style="float: left;width:50%;" name="yyyy" required>
+                    <option disabled selected value="" required></option>
+                    {%for i in range(1950,c_year+1,1)%}
+                    <option  value="{{i}}" requried>{{i}}</option>
+                    {%endfor%}
+                </select><br><br>
+                <label for="yyyy" style="font-size: small;float:left;">Year</label>
+            </div>
+
+        </div>
+        </td>
+     </tr> 
+
+     <tr>
+         <td>
+            <h5 style="text-align: left; font-family:Oswald;padding-left: 2%;">Current Working Position:</h5>
+            <div style="padding-left: 11.5%;float:left" class="form-row">
+                <div class="col-5">
+                <input style="float: left;" id="pos" name="pos" class ="form-control " type="text" required><br><br>
+            </div>
+
+            </div>
+         </td>
+        
+     </tr>
+
+     <tr>
+        <td>
+           <h5 style="text-align: left; font-family:Oswald;padding-left: 2%;">Qualification:</h5>
+           <div style="padding-left: 11.5%;float:left" class="form-row">
+               <div class="col-5">
+               <input style="float: left;" id="quli" name="quli" class ="form-control " type="text" required><br><br>
+           </div>
+
+           </div>
+        </td>
+       
+    </tr>
+  
+
+     <tr>
+         <td>
+             <div class="form-group">
+                <h5 style="text-align: left; font-family:Oswald;padding-left: 2%;">About your self:</h5>
+                <div class="form-row" style="padding-left: 11.5%;float:left">
+                <div class="col">
+                    <textarea style="float: left; padding:0; height: 100px;" row="5" cols="60" id="about" name="about" class ="form-control " type="text"></textarea>
+                </div>
+                </div>
+             </div>
+         </td>
+     </tr>
+     <tr>
+         <td>
+            <h5 style="text-align: left; font-family:Oswald;padding-left: 2%;">Membership Rules</h5>
+            <h6 style="text-align: left; font-family:Oswald;padding-top:1%;padding-left: 11.5%;padding-bottom: 1%;">
+               <li> You promise NOT to use to conduct any fraudulent or business activity or have more than one Member Account at any time.</li>
+            </h6><br>
+            <div class="form-group" style="float:left; padding-left: 11.5%;">
+            <div class="form-check">
+                <input  class="form-check-input" type="checkbox" value="1" id="membershipAgree" name="membershipAgree" required>
+                <label class="form-check-label" for="membershipAgree" style="text-align: left; font-family:Oswald;">
+                    I have read, understood, and accepted the rules for membership. 
+                </label>
+              </div>
+            </div>
+         </td>
+     </tr>
+
+     <tr>
+         <td>
+            <h5 style="text-align: left; font-family:Oswald;padding-left: 2%;">Privacy Policy</h5>
+            <h6 style="text-align: left; font-family:Oswald;padding-top:1%;padding-left: 11.5%;padding-bottom: 1%;">
+                <li>
+                    Please reach out and read our Privacy Policy in order to understand how your information is used and shared, and check below if you accept the policy.
+
+                </li></h6><br>
+                <div class="form-group" style="float:left; padding-left: 11.5%;">
+                    <div class="form-check">
+                        <input  class="form-check-input" type="checkbox" value="1" id="privacyAgree" name="privacyAgree" required>
+                        <label class="form-check-label" for="privacyAgree" style="text-align: left; font-family:Oswald;">
+                            I have read, understood, and accepted the PRIVACY POLICY for membership. 
+                        </label>
+                      </div>
+                    </div>
+
+         </td>
+     </tr>
+   
+
+
+
+    
+    <tr>
+        <td>
+            <button id ="check" class="btn btn-outline-primary " type="submit">Submit Application</button>
+    </td>
+    </tr>
+    <tr>
+        <td>
+            
+           <p style="text-align: right; font-family:Oswald;padding-top:1%;padding-left: 11.5%;padding-bottom: 1%; font-size: smaller;">
+               *Once you submit your application, we will contact you shortly to complete your membership application.  Thank you!
+           </p>
+        </td>
+    </tr>
+    
+</form>
+    </table>
+</div>
+{%endblock%}
